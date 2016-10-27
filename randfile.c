@@ -45,6 +45,7 @@ int main() {
     int readArr[10];
     read(fd, readArr, 10 * 4);
 
+	//VERIFYING NUMS
 	printf("\nVerification that written values were the same:\n");
     for(i = 0; i < 10; i++) {
         printf("\t\trandom %d: %d", i, readArr[i]);
