@@ -11,6 +11,7 @@ int randInt() {
     int fd = open("/dev/random", O_RDONLY);
 	int ret;
 	read(fd, &ret, 4);
+	close(fd);
 	return ret;
 }
 
@@ -32,7 +33,7 @@ int main() {
 	
 	//WRITING NUMS
     printf("\nWriting numbers to file...\n");
-	int fileDest = open("randNums", O_CREAT | O_RDWR, 0666);
+	int fileDest = open("randfile.txt", O_CREAT | O_RDWR, 0666);
 	int success = write(fileDest, &arr, 10 * 4);
 	if (success==-1) printf("%s\n", strerror(errno));
 	close(fileDest);
@@ -41,7 +42,7 @@ int main() {
 
 	//READING NUMS
     printf("\nReading numbers from file...\n");
-    int fd = open("randNums", O_RDONLY);
+    int fd = open("randfile.txt", O_RDONLY);
     int readArr[10];
     read(fd, readArr, 10 * 4);
 
